@@ -69,5 +69,23 @@ document.querySelectorAll('.faq-item').forEach(item => {
     });
 });
 
+// Botão Voltar ao Topo
+const backToTopButton = document.getElementById('back-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopButton.classList.add('show');
+    } else {
+        backToTopButton.classList.remove('show');
+    }
+});
+
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
 // Log de inicialização
 console.log('✨ Energia do Cigano - Site carregado com sucesso!');
