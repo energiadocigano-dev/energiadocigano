@@ -1,30 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Energia do Cigano | Consultas de Baralho Cigano Online</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <meta name="title" content="Energia do Cigano | Consultas de Baralho Cigano Online">
-    <meta name="description" content="Descubra o jogo de Baralho Cigano online e mergulhe em uma experiência espiritual completa de autoconhecimento, orientação e prosperidade. Nosso site oferece tiragens precisas, interpretação clara das cartas e uma interface intuitiva, ideal para iniciantes e praticantes experientes. Acesse agora e permita que o Baralho Cigano revele mensagens, alertas e oportunidades para o seu presente e futuro.">
-    <meta name="keywords" content="baralho cigano, jogo de baralho cigano, cigano, jogo online, tarot">
-    <link rel="icon" type="images/png" href="favicon.png"/>
+    <meta name="description" content="Descubra o Baralho Cigano online com consultas precisas e diretas. Orientação espiritual para amor, trabalho e destino. Marque sua consulta agora via WhatsApp.">
+    <meta name="keywords" content="baralho cigano, consultas online, tarot, espiritualidade, orientação espiritual">
+    <meta property="og:title" content="Energia do Cigano | Consultas de Baralho Cigano Online">
+    <meta property="og:description" content="Descubra o Baralho Cigano online com consultas precisas e diretas. Orientação espiritual para amor, trabalho e destino.">
+    <meta property="og:image" content="./images/hero-baralho.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="images/png" href="images/favicon.png"/>
     <link rel="canonical" href="https://www.energiadocigano.com.br"/>
     <meta property="og:type" content="profile">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Energia do Cigano | Consultas de Baralho Cigano Online">
-    <meta property="og:description" content="Descubra o jogo de Baralho Cigano online e mergulhe em uma experiência espiritual completa de autoconhecimento, orientação e prosperidade. Nosso site oferece tiragens precisas, interpretação clara das cartas e uma interface intuitiva, ideal para iniciantes e praticantes experientes. Acesse agora e permita que o Baralho Cigano revele mensagens, alertas e oportunidades para o seu presente e futuro.">
     <meta property="og:url" content="https://www.energiadocigano.com.br">
     <meta property="og:site_name" content="Energia do Cigano">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:image" content="https://www.energiadocigano.com.br/energia-do-cigano.png">
     <meta property="og:image:alt" content="Energia do Cigano">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Energia do Cigano | Consultas de Baralho Cigano Online">
     <meta name="twitter:description" content="Descubra o jogo de Baralho Cigano online e mergulhe em uma experiência espiritual completa de autoconhecimento, orientação e prosperidade. Nosso site oferece tiragens precisas, interpretação clara das cartas e uma interface intuitiva, ideal para iniciantes e praticantes experientes. Acesse agora e permita que o Baralho Cigano revele mensagens, alertas e oportunidades para o seu presente e futuro.">
-    <meta name="twitter:image" content="https://www.energiadocigano.com.br/energia-do-cigano.png">
+    <meta name="twitter:image" content="https://www.energiadocigano.com.br/images/energia-do-cigano.png">
     <meta name="twitter:site" content="@energiadocigano">
     <meta name="robots" content="index">
     <meta name="google-site-verification" content="CnEn0m5EEv-jjE4JL1lWp2MkfiDfdeLCyMBI9SnMKOI" />
@@ -34,90 +33,128 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-ED1FB6CLHY');
 </script>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header>
         <div class="container">
-            <div class="logo">
-                <h1><i class="fas fa-sun"></i> Energia do Cigano</h1>
-                <p>Consultas de Baralho Cigano Online</p>
+            <div class="header-content">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/>
+                    </svg>
+                    <span>Energia do Cigano</span>
+                </div>
+                <!-- Desktop Navigation -->
+                <nav>
+                    <a href="#home">Início</a>
+                    <a href="#beneficios">Benefícios</a>
+                    <a href="#como-funciona">Como Funciona</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#" class="btn-primary" data-whatsapp>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        Marcar Consulta
+                    </a>
+                </nav>
+                <!-- Mobile Menu Button -->
+                <button class="menu-toggle"></button>
+            </div>
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav">
+                <a href="#home">Início</a>
+                <a href="#beneficios">Benefícios</a>
+                <a href="#como-funciona">Como Funciona</a>
+                <a href="blog.html">Blog</a>
+                <a href="#faq">FAQ</a>
+                <a href="#" class="btn-primary" data-whatsapp>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Marcar Consulta
+                </a>
             </div>
         </div>
     </header>
-
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h2>Baralho Cigano<br>Para Iluminar Seu Caminho</h2>
-                <p>Consultas diretas e precisas sobre amor, trabalho e destino</p>
-                
-                <div class="pricing-highlight">
-                    <div class="price-box">
-                        <h3>1 Pergunta</h3>
-                        <p class="amount">R$ 40,00</p>
-                        <p class="description">Resposta direta e objetiva</p>
-                    </div>
-                    <div class="price-box featured">
-                        <h3>3 Perguntas</h3>
-                        <p class="amount">R$ 70,00</p>
-                        <p class="description">Análise profunda e completa</p>
-                    </div>
-                </div>
-
-                <a href="https://wa.me/5521982684928?text=marcar%20consulta%20com%20o%20cigano" class="btn-primary">
-                    <i class="fab fa-whatsapp"></i> Marcar Consulta Agora
-                </a>
-            </div>
-
-            <div class="hero-image">
-                <div class="card-frame">
-                    <div class="card-carousel">
-                        <div class="card-item">
-                            <i class="fas fa-star"></i>
+                <div class="hero-text">
+                    <h2>Baralho Cigano<br>Para Iluminar Seu Caminho</h2>
+                    <p>Consultas diretas e precisas sobre amor, trabalho e destino. Descubra as mensagens que o universo tem para você.</p>
+                    <!-- Pricing Cards -->
+                    <div class="pricing-cards">
+                        <div class="price-card">
+                            <h3>1 Pergunta</h3>
+                            <div class="price">R$ 40,00</div>
+                            <p class="description">Resposta direta e objetiva</p>
+                        </div>
+                        <div class="price-card featured">
+                            <div class="badge">POPULAR</div>
+                            <h3>3 Perguntas</h3>
+                            <div class="price">R$ 70,00</div>
+                            <p class="description">Análise profunda e completa</p>
                         </div>
                     </div>
+                    <a href="#" class="btn-primary" data-whatsapp style="font-size: 1.125rem; padding: 1rem 2rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        Marcar Consulta Agora
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <img loading="lazy" src="./images/spiritual-energy.jpg" alt="Energia Espiritual">
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Benefits Section -->
-    <section class="benefits">
+    <section id="beneficios" class="benefits">
         <div class="container">
-            <h2>Por Que Escolher Energia do Cigano?</h2>
+            <div class="section-header">
+                <h2>Por Que Escolher Energia do Cigano?</h2>
+                <div class="divider"></div>
+                <p>Somos especialistas em leitura de Baralho Cigano com experiência comprovada em orientação espiritual</p>
+            </div>
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-star"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/>
+                        </svg>
                     </div>
                     <h3>Especialista em Baralho Cigano</h3>
                     <p>Consultas precisas e diretas com experiência em leitura de cartas ciganas para orientação espiritual.</p>
                 </div>
-
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-bolt"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
                     </div>
                     <h3>Respostas Rápidas e Diretas</h3>
                     <p>Obtenha clareza imediata sobre suas dúvidas através do WhatsApp, no momento que mais precisa.</p>
                 </div>
-
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-lock"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
                     </div>
                     <h3>Privacidade e Sigilo</h3>
                     <p>Todas as consultas são confidenciais e realizadas em um ambiente seguro e discreto.</p>
                 </div>
-
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-heart"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
                     </div>
                     <h3>Orientação Espiritual Completa</h3>
                     <p>Leituras profundas sobre amor, trabalho, saúde e espiritualidade com insights valiosos.</p>
@@ -125,24 +162,30 @@
             </div>
         </div>
     </section>
-
     <!-- How It Works -->
-    <section class="how-it-works">
+    <section id="como-funciona" class="how-it-works">
         <div class="container">
-            <h2>Como Funciona?</h2>
-            <div class="steps">
+            <div class="section-header">
+                <h2>Como Funciona?</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="steps-grid">
                 <div class="step">
                     <div class="step-number">1</div>
                     <h3>Envie sua Pergunta</h3>
                     <p>Clique no botão WhatsApp e envie sua dúvida de forma clara e objetiva.</p>
+                    <svg class="step-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                    </svg>
                 </div>
-
                 <div class="step">
                     <div class="step-number">2</div>
                     <h3>Receba a Leitura</h3>
                     <p>Faça o pagamento via PIX e receba a leitura completa do Baralho Cigano.</p>
+                    <svg class="step-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                    </svg>
                 </div>
-
                 <div class="step">
                     <div class="step-number">3</div>
                     <h3>Obtenha Clareza</h3>
@@ -151,83 +194,113 @@
             </div>
         </div>
     </section>
-
-    <!-- FAQ Section -->
-    <section class="faq">
-        <div class="container">
-            <h2>Perguntas Frequentes</h2>
-            
-            <details class="faq-item">
-                <summary>Como funciona a consulta de Baralho Cigano?</summary>
-                <p>Você envia sua pergunta via WhatsApp, realiza o pagamento via PIX, e recebe a leitura completa das cartas com interpretação e orientações espirituais.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>Qual é o prazo para receber a resposta?</summary>
-                <p>As consultas são respondidas em instantes. Geralmente, você recebe a leitura minutos após a pergunta enviada.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>Quais formas de pagamento são aceitas?</summary>
-                <p>Aceitamos PIX para pagamento rápido e seguro. Você recebe as instruções após enviar sua pergunta.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>Posso fazer perguntas sobre amor e relacionamentos?</summary>
-                <p>Sim! Questões sobre amor, reconciliações, novos relacionamentos e sentimentos são nossas especialidades.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>As leituras são confidenciais?</summary>
-                <p>Sim, todas as consultas são completamente confidenciais e sigilosas. Sua privacidade é nossa prioridade.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>Preciso ter conhecimento sobre Baralho Cigano?</summary>
-                <p>Não! Explicamos tudo de forma clara e simples, mesmo se for sua primeira consulta.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>Posso fazer perguntas sobre alguém específico?</summary>
-                <p>Sim, você pode fazer perguntas sobre relacionamentos passados, atuais ou futuras possibilidades amorosas.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>Qual é a diferença entre 1 pergunta e 3 perguntas?</summary>
-                <p>Com 1 pergunta você recebe uma resposta direta. Com 3 perguntas, você tem uma análise mais profunda e completa de diferentes aspectos da sua situação.</p>
-            </details>
-        </div>
-    </section>
-
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
             <h2>Descubra Seu Destino Agora</h2>
             <p>Tire suas dúvidas e receba orientação espiritual através do Baralho Cigano</p>
-            <a href="https://wa.me/5521982684928?text=marcar%20consulta%20com%20o%20cigano" class="btn-primary btn-large">
-                <i class="fab fa-whatsapp"></i> Iniciar Consulta via WhatsApp
+            <a href="#" class="btn-cta" data-whatsapp>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                Iniciar Consulta via WhatsApp
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                </svg>
             </a>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
         <div class="container">
-            <p>&copy; 2026 Energia do Cigano. Todos os direitos reservados.</p>
-            <p>Consultas espirituais através do Baralho Cigano | Privacidade garantida</p>
+            <div class="section-header">
+                <h2>Perguntas Frequentes</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="faq-container">
+                <details class="faq-item">
+                    <summary>Como funciona a consulta de Baralho Cigano?</summary>
+                    <p>Você envia sua pergunta via WhatsApp, realiza o pagamento via PIX, e recebe a leitura completa das cartas com interpretação e orientações espirituais.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Qual é o prazo para receber a resposta?</summary>
+                    <p>As consultas são respondidas em instantes. Geralmente, você recebe a leitura minutos após a pergunta enviada.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Quais formas de pagamento são aceitas?</summary>
+                    <p>Aceitamos PIX para pagamento rápido e seguro. Você recebe as instruções após enviar sua pergunta.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Posso fazer perguntas sobre amor e relacionamentos?</summary>
+                    <p>Sim! Questões sobre amor, reconciliações, novos relacionamentos e sentimentos são nossas especialidades.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>As leituras são confidenciais?</summary>
+                    <p>Sim, todas as consultas são completamente confidenciais e sigilosas. Sua privacidade é nossa prioridade.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Preciso ter conhecimento sobre Baralho Cigano?</summary>
+                    <p>Não! Explicamos tudo de forma clara e simples, mesmo se for sua primeira consulta.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color: #D4A574;">
+                            <polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/>
+                        </svg>
+                        <h3 style="color: white; font-size: 1.125rem;">Energia do Cigano</h3>
+                    </div>
+                    <p>Consultas espirituais através do Baralho Cigano com privacidade garantida.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#como-funciona">Como Funciona</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#" data-whatsapp>WhatsApp</a></li>
+                        <li><a>Email: energiadocigano@gmail.com</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="politica-de-privacidade.html">Privacidade</a></li>
+                        <li><a href="termos-de-uso.html">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Energia do Cigano. Todos os direitos reservados.</p>
+                <p>Consultas espirituais através do Baralho Cigano | Privacidade garantida</p>
+            </div>
         </div>
     </footer>
-
-    <!-- Floating Buttons -->
-    <div class="floating-buttons">
-        <button id="back-to-top" class="back-to-top" title="Voltar ao topo">
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        <a href="https://wa.me/5521982684928?text=marcar%20consulta%20com%20o%20cigano" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
-
-    <script src="script.js"></script>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Voltar ao topo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+    <!-- Floating WhatsApp Button -->
+    <a href="#" class="whatsapp-float" data-whatsapp title="Fale conosco no WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+    </a>
+    <script src="js/main.js" defer></script>
 </body>
 </html>
