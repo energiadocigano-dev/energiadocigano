@@ -1,7 +1,7 @@
 const cartasCigano = [
     { id: 1, nome: "O Cavaleiro", significado: "Novidades, notícias rápidas e movimento. Alguém ou algo está chegando em sua vida." },
     { id: 2, nome: "O Trevo", significado: "Pequenos obstáculos ou sorte momentânea. Dificuldades passageiras que exigem paciência." },
-    { id: 3, nome: "O Navio", significado: "Mudanças, viagens ou novos horizontes. Momento de transição e busca por novos caminhos." },
+    { id: 3, nome: "O Navio", significado: "Mudanças, viagens ou novos horizons. Momento de transição e busca por novos caminhos." },
     { id: 4, nome: "A Casa", significado: "Equilíbrio, família e estabilidade. Refere-se ao seu lar e à sua base emocional." },
     { id: 5, nome: "A Árvore", significado: "Saúde, crescimento e vitalidade. Representa algo que está criando raízes profundas." },
     { id: 6, nome: "As Nuvens", significado: "Confusão mental, dúvidas e instabilidade. Momento de incerteza onde a visão está embaçada." },
@@ -37,9 +37,7 @@ const cartasCigano = [
     { id: 36, nome: "A Cruz", significado: "Destino, fé e provação. O fim de um sofrimento ou uma carga que traz aprendizado." }
 ];
 
-// Configuração da API (URL onde o script Python está rodando)
-const API_URL = "http://localhost:5000";
-
+// Lógica de Autenticação (Simulada com LocalStorage)
 document.addEventListener('DOMContentLoaded', function() {
     const authOverlay = document.getElementById('auth-overlay');
     const loginContainer = document.getElementById('login-container');
@@ -60,14 +58,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoutBtn = document.getElementById('logout-btn');
     const shuffleBtn = document.getElementById('shuffle-btn');
 
-    // Verificar se o usuário já está logado na sessão atual
-    const currentUser = JSON.parse(sessionStorage.getItem('cigano_user'));
+    // Inicializar lista de bloqueio se não existir
+    if (!localStorage.getItem('cigano_blocked_emails')) {
+        localStorage.setItem('cigano_blocked_emails', JSON.stringify(['exemplo_bloqueado@teste.com']));
+    }
+
+    // Verificar se o usuário já está logado
+    const currentUser = JSON.parse(localStorage.getItem('cigano_user'));
     if (currentUser) {
-        showUserLoggedIn(currentUser.nome);
+        if (isUserBlocked(currentUser.email)) {
+            alert('Sua conta foi bloqueada. Entre em contato com o suporte.');
+            localStorage.removeItem('cigano_user');
+            location.reload();
+        } else {
+            showUserLoggedIn(currentUser.name);
+        }
     } else {
         if (shuffleBtn) {
             shuffleBtn.addEventListener('click', function(e) {
-                if (!sessionStorage.getItem('cigano_user')) {
+                if (!localStorage.getItem('cigano_user')) {
                     e.stopImmediatePropagation();
                     authOverlay.classList.remove('hidden');
                 }
@@ -86,70 +95,109 @@ document.addEventListener('DOMContentLoaded', function() {
         target.classList.remove('hidden');
     }
 
-    // Lógica de Cadastro com Python API
-    registerForm.addEventListener('submit', async (e) => {
+    function isUserBlocked(email) {
+        const blocked = JSON.parse(localStorage.getItem('cigano_blocked_emails') || '[]');
+        return blocked.includes(email);
+    }
+
+    // Lógica de Cadastro
+    registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const nome = document.getElementById('reg-name').value;
+        const name = document.getElementById('reg-name').value;
         const email = document.getElementById('reg-email').value;
-        const senha = document.getElementById('reg-pass').value;
+        const pass = document.getElementById('reg-pass').value;
 
-        try {
-            const response = await fetch(`${API_URL}/cadastrar`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nome, email, senha })
-            });
-            const data = await response.json();
+        if (isUserBlocked(email)) {
+            alert('Este e-mail está bloqueado no sistema.');
+            return;
+        }
 
-            if (data.success) {
-                alert(data.message);
-                // Após cadastrar, faz login automático
-                sessionStorage.setItem('cigano_user', JSON.stringify({ nome, email }));
-                location.reload();
-            } else {
-                alert(data.message);
-            }
-        } catch (error) {
-            alert("Erro ao conectar com o servidor Python. Certifique-se de que o app.py está rodando.");
+        const users = JSON.parse(localStorage.getItem('cigano_users') || '[]');
+        if (users.find(u => u.email === email)) {
+            alert('Este e-mail já está cadastrado!');
+            return;
+        }
+
+        const newUser = { name, email, pass };
+        users.push(newUser);
+        localStorage.setItem('cigano_users', JSON.stringify(users));
+        localStorage.setItem('cigano_user', JSON.stringify(newUser));
+
+        alert('Cadastro realizado com sucesso!');
+        location.reload();
+    });
+
+    // Lógica de Login
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const pass = document.getElementById('login-pass').value;
+
+        if (isUserBlocked(email)) {
+            alert('Sua conta está bloqueada.');
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('cigano_users') || '[]');
+        const user = users.find(u => u.email === email && u.pass === pass);
+
+        if (user) {
+            localStorage.setItem('cigano_user', JSON.stringify(user));
+            location.reload();
+        } else {
+            alert('E-mail ou senha incorretos!');
         }
     });
 
-    // Lógica de Login com Python API
-    loginForm.addEventListener('submit', async (e) => {
+    // Lógica de Esqueci a Senha
+    forgotForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const email = document.getElementById('login-email').value;
-        const senha = document.getElementById('login-pass').value;
+        const email = document.getElementById('forgot-email').value;
+        const users = JSON.parse(localStorage.getItem('cigano_users') || '[]');
+        const user = users.find(u => u.email === email);
 
-        try {
-            const response = await fetch(`${API_URL}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, senha })
-            });
-            const data = await response.json();
-
-            if (data.success) {
-                sessionStorage.setItem('cigano_user', JSON.stringify(data.user));
-                location.reload();
-            } else {
-                alert(data.message);
-            }
-        } catch (error) {
-            alert("Erro ao conectar com o servidor Python.");
+        if (user) {
+            alert(`Sua senha é: ${user.pass}\n(Em um sistema real, um e-mail de recuperação seria enviado)`);
+            switchContainer(loginContainer);
+        } else {
+            alert('E-mail não encontrado em nossa base.');
         }
     });
 
     // Lógica de Logout
     logoutBtn.addEventListener('click', () => {
-        sessionStorage.removeItem('cigano_user');
+        localStorage.removeItem('cigano_user');
         location.reload();
     });
 
-    function showUserLoggedIn(nome) {
+    function showUserLoggedIn(name) {
         if (userInfo) {
             userInfo.classList.remove('hidden');
-            userNameDisplay.textContent = `Olá, ${nome.split(' ')[0]}`;
+            userNameDisplay.textContent = `Olá, ${name.split(' ')[0]}`;
         }
         if (authOverlay) authOverlay.classList.add('hidden');
     }
+
+    // Função global para bloqueio (para uso no console pelo administrador)
+    window.bloquearUsuario = function(email) {
+        const blocked = JSON.parse(localStorage.getItem('cigano_blocked_emails') || '[]');
+        if (!blocked.includes(email)) {
+            blocked.push(email);
+            localStorage.setItem('cigano_blocked_emails', JSON.stringify(blocked));
+            alert(`Usuário ${email} bloqueado com sucesso!`);
+            if (currentUser && currentUser.email === email) {
+                localStorage.removeItem('cigano_user');
+                location.reload();
+            }
+        } else {
+            alert('Este usuário já está bloqueado.');
+        }
+    };
+
+    window.desbloquearUsuario = function(email) {
+        let blocked = JSON.parse(localStorage.getItem('cigano_blocked_emails') || '[]');
+        blocked = blocked.filter(e => e !== email);
+        localStorage.setItem('cigano_blocked_emails', JSON.stringify(blocked));
+        alert(`Usuário ${email} desbloqueado!`);
+    };
 });

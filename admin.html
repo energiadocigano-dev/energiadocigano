@@ -116,8 +116,8 @@
     <div id="admin-login-overlay">
         <div class="admin-login-card">
             <h2>Acesso Restrito</h2>
-            <p style="margin-bottom: 1.5rem; color: var(--gray-600);">Insira a senha mestra para acessar o painel.</p>
-            <input type="password" id="admin-password" placeholder="Senha Mestra">
+            <p style="margin-bottom: 1.5rem; color: var(--gray-600);">Login administrativo</p>
+            <input type="password" id="admin-password" placeholder="Digite a senha">
             <button id="admin-login-btn">Entrar no Painel</button>
             <p id="login-error" style="color: #ef4444; margin-top: 1rem; font-weight: 600;" class="hidden">Senha incorreta!</p>
         </div>
@@ -174,7 +174,7 @@
 
     <script>
         // SENHA MESTRA DEFINIDA NO CÓDIGO
-        const MASTER_PASSWORD = "admin_cigano_2026";
+        const MASTER_PASSWORD = "admin-login-overlay";
 
         document.addEventListener('DOMContentLoaded', function() {
             const loginOverlay = document.getElementById('admin-login-overlay');
@@ -210,63 +210,58 @@
                 location.reload();
             });
 
-            const API_URL = "http://localhost:5000";
+            function renderUsers() {
+                const users = JSON.parse(localStorage.getItem('cigano_users') || '[]');
+                const blocked = JSON.parse(localStorage.getItem('cigano_blocked_emails') || '[]');
+                const list = document.getElementById('user-list');
+                const emptyMsg = document.getElementById('empty-msg');
+                const totalSpan = document.getElementById('total-users');
 
-            async function renderUsers() {
-                try {
-                    const response = await fetch(`${API_URL}/admin/usuarios`);
-                    const users = await response.json();
-                    
-                    const list = document.getElementById('user-list');
-                    const emptyMsg = document.getElementById('empty-msg');
-                    const totalSpan = document.getElementById('total-users');
+                list.innerHTML = '';
+                totalSpan.textContent = `Total: ${users.length}`;
 
-                    list.innerHTML = '';
-                    totalSpan.textContent = `Total: ${users.length}`;
-
-                    if (users.length === 0) {
-                        emptyMsg.classList.remove('hidden');
-                        return;
-                    }
-
-                    emptyMsg.classList.add('hidden');
-
-                    users.forEach(user => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${user.nome}</td>
-                            <td>${user.email}</td>
-                            <td><code>${user.senha}</code></td>
-                            <td>
-                                <span class="status-badge ${user.bloqueado ? 'status-blocked' : 'status-active'}">
-                                    ${user.bloqueado ? 'Bloqueado' : 'Ativo'}
-                                </span>
-                            </td>
-                            <td>
-                                <button class="action-btn ${user.bloqueado ? 'btn-unblock' : 'btn-block'}" 
-                                        onclick="toggleBlock('${user.email}', ${user.bloqueado})">
-                                    ${user.bloqueado ? 'Desbloquear' : 'Bloquear'}
-                                </button>
-                            </td>
-                        `;
-                        list.appendChild(row);
-                    });
-                } catch (error) {
-                    alert("Erro ao carregar usuários da API Python.");
+                if (users.length === 0) {
+                    emptyMsg.classList.remove('hidden');
+                    return;
                 }
+
+                emptyMsg.classList.add('hidden');
+
+                users.forEach(user => {
+                    const isBlocked = blocked.includes(user.email);
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td><code>${user.pass}</code></td>
+                        <td>
+                            <span class="status-badge ${isBlocked ? 'status-blocked' : 'status-active'}">
+                                ${isBlocked ? 'Bloqueado' : 'Ativo'}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="action-btn ${isBlocked ? 'btn-unblock' : 'btn-block'}" 
+                                    onclick="toggleBlock('${user.email}', ${isBlocked})">
+                                ${isBlocked ? 'Desbloquear' : 'Bloquear'}
+                            </button>
+                        </td>
+                    `;
+                    list.appendChild(row);
+                });
             }
 
-            window.toggleBlock = async function(email, isCurrentlyBlocked) {
-                try {
-                    await fetch(`${API_URL}/admin/bloquear`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email, bloquear: !isCurrentlyBlocked })
-                    });
-                    renderUsers();
-                } catch (error) {
-                    alert("Erro ao alterar status do usuário.");
+            window.toggleBlock = function(email, isBlocked) {
+                let blocked = JSON.parse(localStorage.getItem('cigano_blocked_emails') || '[]');
+                
+                if (isBlocked) {
+                    blocked = blocked.filter(e => e !== email);
+                } else {
+                    if (!blocked.includes(email)) blocked.push(email);
                 }
+                
+                localStorage.setItem('cigano_blocked_emails', JSON.stringify(blocked));
+                renderUsers();
             };
         });
     </script>
