@@ -324,6 +324,19 @@ function init() {
   setupFAQ();
   setupBlogNavigation();
 
+  // Setup Product Page dynamic button
+  const buyBtn = document.querySelector('.btn-add-cart');
+  const qtyInput = document.querySelector('.quantity-selector input');
+  const qtyButtons = document.querySelectorAll('.quantity-selector button');
+
+  if (buyBtn && qtyInput) {
+    // WhatsApp purchase event
+    buyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      buyNow();
+    });
+  }
+
   // Log initialization
   console.log('✨ Energia do Cigano - Website initialized');
 }
@@ -550,5 +563,93 @@ if (window.location.pathname.includes('blog-post')) {
     document.addEventListener('DOMContentLoaded', loadBlogPost);
   } else {
     loadBlogPost();
+  }
+}
+
+// ============================================
+// PRODUCT PAGE FUNCTIONS
+// ============================================
+
+/**
+ * Change main product image
+ */
+function changeImage(element, src) {
+  const mainImage = document.getElementById('mainProductImage');
+  if (mainImage) {
+    mainImage.src = src;
+    
+    // Update active thumbnail
+    document.querySelectorAll('.thumbnail-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    element.classList.add('active');
+  }
+}
+
+/**
+ * Increment quantity
+ */
+function incrementQty() {
+  const qtyInput = document.getElementById('productQty');
+  if (qtyInput) {
+    qtyInput.stepUp();
+  }
+}
+
+/**
+ * Decrement quantity
+ */
+function decrementQty() {
+  const qtyInput = document.getElementById('productQty');
+  if (qtyInput && qtyInput.value > 1) {
+    qtyInput.stepDown();
+  }
+}
+
+/**
+ * Calculate shipping (Fixed rule)
+ */
+function calculateShipping() {
+  const cepInput = document.getElementById('cepInput');
+  const results = document.getElementById('shippingResults');
+  
+  if (cepInput && cepInput.value.length >= 8) {
+    if (results) {
+      results.style.display = 'flex';
+    }
+  } else {
+    alert('Por favor, informe um CEP válido.');
+  }
+}
+
+/**
+ * Buy Now - Redirect to WhatsApp with product info
+ */
+function buyNow() {
+  const productNameEl = document.querySelector('h1');
+  const qtyInput = document.querySelector('.quantity-selector input');
+  
+  if (productNameEl && qtyInput) {
+    const productName = productNameEl.textContent;
+    const quantity = qtyInput.value;
+    const message = `Olá, gostaria de fazer um pedido de compra:\n\nProduto: ${productName}\nQuantidade: ${quantity}`;
+    const whatsappUrl = `https://wa.me/5521982684928?text=${encodeURIComponent(message)}`;
+    
+    window.open(whatsappUrl, '_blank');
+  }
+}
+
+/**
+ * Change main product image when clicking thumbnails
+ */
+function changeImage(thumbnail, imageSrc) {
+  const mainImage = document.getElementById('mainProductImage');
+  if (mainImage) {
+    mainImage.src = imageSrc;
+    
+    // Update active thumbnail
+    const thumbnails = document.querySelectorAll('.thumbnail-item');
+    thumbnails.forEach(item => item.classList.remove('active'));
+    thumbnail.classList.add('active');
   }
 }

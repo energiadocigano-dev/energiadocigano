@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Cigano Online - Energia do Cigano</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jogo-cigano.css">
+    <link rel="icon" type="images/png" href="images/favicon.png"/>
+    <style>
+        .game-intro {
+            margin-bottom: 2rem;
+        }
+        .game-intro h1 {
+            margin-bottom: 1rem;
+        }
+        .game-intro p {
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        /* Estilo para o botão Jogar Novamente padronizado */
+        .btn-restart {
+            display: inline-block;
+            width: auto;
+            padding: 0.75rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 2rem;
+            border: 1px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-restart:hover {
+            background-color: white;
+            color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+        .interpretation-text {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: var(--gray-700);
+        }
+        .card-image-placeholder {
+            width: 100%;
+            height: 150px;
+            background-color: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/>
+                    </svg>
+                    <span>Energia do Cigano</span>
+                </div>
+                <nav>
+                    <a href="index.html">Início</a>
+                    <a href="produtos-energia-do-cigano.html">Produtos</a>
+                    <a href="jogo-cigano-online.html" class="active">Jogo Online</a>
+                    <a href="blog.html">Blog</a>
+                    <div id="user-info" class="hidden">
+                        <span id="user-name-display"></span>
+                        <a id="logout-btn">Sair</a>
+                    </div>
+                </nav>
+                <button class="menu-toggle" aria-label="Abrir Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="game-container">
+            <div class="game-intro">
+                <h1>Jogo de Baralho Cigano Online</h1>
+                <div class="divider"></div>
+                <p>Concentre-se em sua pergunta. Clique em "Embaralhar" e depois em "Ver as Cartas" para receber sua orientação completa.</p>
+            </div>
+
+            <div class="deck-section">
+                <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+                    <button id="shuffle-btn" class="btn-draw" style="background-color: var(--primary);">Embaralhar</button>
+                    <button id="draw-btn" class="btn-draw" disabled>Ver as Cartas</button>
+                </div>
+                
+                <div class="cards-display" id="cards-display">
+                    <div class="card-slot" id="slot-1">
+                        <div class="card-inner">
+                            <div class="card-back">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/></svg>
+                                <span>Carta 1</span>
+                            </div>
+                            <div class="card-front" id="front-1"></div>
+                        </div>
+                    </div>
+                    <div class="card-slot" id="slot-2">
+                        <div class="card-inner">
+                            <div class="card-back">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/></svg>
+                                <span>Carta 2</span>
+                            </div>
+                            <div class="card-front" id="front-2"></div>
+                        </div>
+                    </div>
+                    <div class="card-slot" id="slot-3">
+                        <div class="card-inner">
+                            <div class="card-back">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/></svg>
+                                <span>Carta 3</span>
+                            </div>
+                            <div class="card-front" id="front-3"></div>
+                        </div>
+                    </div>
+                    <div class="card-slot" id="slot-4">
+                        <div class="card-inner">
+                            <div class="card-back">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/></svg>
+                                <span>Carta 4</span>
+                            </div>
+                            <div class="card-front" id="front-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="interpretation" class="interpretation-section">
+                <h3>Interpretação da sua Tiragem</h3>
+                <div class="divider" style="margin: 1rem 0;"></div>
+                <div id="interpretation-content"></div>
+                <button onclick="location.reload()" class="btn-restart">Jogar Novamente</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+            <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color: #D4A574;">
+                            <polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/>
+                        </svg>
+                        <h3 style="color: white; font-size: 1.125rem;">Energia do Cigano</h3>
+                    </div>
+                    <p>Consultas espirituais através do Baralho Cigano com privacidade garantida.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="produtos-energia-do-cigano.html">Produtos</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="https://www.instagram.com/energiadocigano" target="_blank" aria-label="Instagram" style="color: #D1D5DB; transition: color 0.2s ease;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@energia.do.cigano" target="_blank" aria-label="TikTok" style="color: #D1D5DB; transition: color 0.2s ease;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="politica-de-privacidade.html">Privacidade</a></li>
+                        <li><a href="termos-de-uso.html">Termos de Uso</a></li>
+                        <li><a href="admin.html" style="opacity: 0.5;">Administração</a></li>
+                    </ul>
+                </div>
+                                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#" data-whatsapp>WhatsApp</a></li>
+                        <li><a>energiadocigano@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Energia do Cigano. Todos os direitos reservados.</p>
+                <p>Consultas espirituais através do Baralho Cigano | Privacidade garantida</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Voltar ao topo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Auth Modal -->
+    <div id="auth-overlay" class="auth-overlay hidden">
+        <div class="auth-modal">
+            <div id="login-container">
+                <h2>Acesse seu Jogo</h2>
+                <p>Faça login para realizar sua tiragem gratuita.</p>
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">E-mail</label>
+                        <input type="email" id="login-email" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-pass">Senha</label>
+                        <input type="password" id="login-pass" required placeholder="********">
+                    </div>
+                    <button type="submit" class="auth-btn">Entrar</button>
+                </form>
+                <p class="auth-switch">Não tem uma conta? <a href="#" id="show-register">Cadastre-se</a></p>
+                <p class="auth-switch"><a href="#" id="show-forgot">Esqueci minha senha</a></p>
+            </div>
+
+            <div id="forgot-container" class="hidden">
+                <h2>Recuperar Senha</h2>
+                <p>Insira seu e-mail para recuperar seu acesso.</p>
+                <form id="forgot-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="forgot-email">E-mail</label>
+                        <input type="email" id="forgot-email" required placeholder="seu@email.com">
+                    </div>
+                    <button type="submit" class="auth-btn">Recuperar</button>
+                </form>
+                <p class="auth-switch"><a href="#" id="back-to-login">Voltar para o Login</a></p>
+            </div>
+
+            <div id="register-container" class="hidden">
+                <h2>Crie sua Conta</h2>
+                <p>Cadastre-se para salvar suas consultas e novidades.</p>
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="reg-name">Nome Completo</label>
+                        <input type="text" id="reg-name" required placeholder="Seu Nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">E-mail</label>
+                        <input type="email" id="reg-email" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-pass">Senha</label>
+                        <input type="password" id="reg-pass" required placeholder="Crie uma senha">
+                    </div>
+                    <button type="submit" class="auth-btn">Cadastrar</button>
+                </form>
+                <p class="auth-switch">Já tem conta? <a href="#" id="show-login">Fazer Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="#" class="whatsapp-float" data-whatsapp title="Fale conosco no WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <script src="js/main.js" defer></script>
+    <script src="js/shipping-manager.js" defer></script>
+</body>
+</html>
+
+    <script src="js/cartas-cigano.js"></script>
+    <script>
+        let baralhoEmbaralhado = [];
+
+        document.getElementById('shuffle-btn').addEventListener('click', function() {
+            const btn = this;
+            btn.disabled = true;
+            btn.innerText = "Embaralhando...";
+            
+            // Efeito visual de embaralhamento nas cartas
+            const slots = document.querySelectorAll('.card-slot');
+            slots.forEach(slot => {
+                slot.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px) rotate(${Math.random() * 10 - 5}deg)`;
+            });
+
+            setTimeout(() => {
+                baralhoEmbaralhado = [...cartasCigano].sort(() => 0.5 - Math.random());
+                btn.innerText = "Embaralhado!";
+                document.getElementById('draw-btn').disabled = false;
+                
+                slots.forEach(slot => {
+                    slot.style.transform = 'none';
+                });
+            }, 1000);
+        });
+
+        document.getElementById('draw-btn').addEventListener('click', function() {
+            const btn = this;
+            btn.disabled = true;
+            document.getElementById('shuffle-btn').style.display = 'none';
+            btn.innerText = "Revelando...";
+
+            const cartasSorteadas = baralhoEmbaralhado.slice(0, 4);
+            exibirCartas(cartasSorteadas);
+            exibirInterpretacao(cartasSorteadas);
+            
+            setTimeout(() => {
+                btn.style.display = 'none';
+            }, 1000);
+        });
+
+        function exibirCartas(cartas) {
+            cartas.forEach((carta, index) => {
+                const front = document.getElementById(`front-${index + 1}`);
+                const slot = document.getElementById(`slot-${index + 1}`);
+                
+                front.innerHTML = `
+                    <div class="card-image-placeholder">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="var(--secondary)" style="opacity: 0.3;">
+                            <polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/>
+                        </svg>
+                    </div>
+                    <div class="card-number">${carta.id}</div>
+                    <div class="card-name">${carta.nome}</div>
+                `;
+
+                setTimeout(() => {
+                    slot.classList.add('flipped');
+                }, index * 300);
+            });
+        }
+
+        function exibirInterpretacao(cartas) {
+            const container = document.getElementById('interpretation-content');
+            const section = document.getElementById('interpretation');
+            
+            const labels = [
+                "1. A Base: O que sustenta sua pergunta", 
+                "2. O Desafio: O que você precisa enfrentar", 
+                "3. O Conselho: Como você deve agir", 
+                "4. O Desfecho: A tendência para o futuro"
+            ];
+            
+            let html = '';
+            cartas.forEach((carta, index) => {
+                // Gerando dois parágrafos de interpretação
+                const p1 = `A carta <strong>${carta.nome}</strong> (Número ${carta.id}) surge nesta posição para indicar que ${carta.significado.toLowerCase()}`;
+                const p2 = `Neste contexto de ${labels[index].split(':')[0].toLowerCase()}, esta energia sugere que você mantenha a atenção plena e busque o equilíbrio necessário para colher os melhores resultados em sua jornada espiritual e material.`;
+
+                html += `
+                    <div class="interpretation-item">
+                        <h4>${labels[index]} - ${carta.nome}</h4>
+                        <p class="interpretation-text">${p1}</p>
+                        <p class="interpretation-text">${p2}</p>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            
+            setTimeout(() => {
+                section.classList.add('active');
+                section.scrollIntoView({ behavior: 'smooth' });
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

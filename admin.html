@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Energia do Cigano</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jogo-cigano.css">
+    <style>
+        .admin-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--gray-100);
+            padding-bottom: 1rem;
+        }
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .user-table th, .user-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .user-table th {
+            background-color: var(--gray-50);
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .status-active { background: #dcfce7; color: #166534; }
+        .status-blocked { background: #fee2e2; color: #991b1b; }
+        
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        .btn-block { background: #ef4444; color: white; }
+        .btn-unblock { background: #22c55e; color: white; }
+        .action-btn:hover { opacity: 0.8; }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray-500);
+        }
+
+        /* Estilos do Login Admin */
+        #admin-login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gray-900);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .admin-login-card {
+            background: white;
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            max-width: 400px;
+            width: 90%;
+        }
+        .admin-login-card h2 { margin-bottom: 1rem; color: var(--primary); }
+        .admin-login-card input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        .admin-login-card button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- Login Administrativo -->
+    <div id="admin-login-overlay">
+        <div class="admin-login-card">
+            <h2>Acesso Restrito</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-600);">Insira a senha mestra para acessar o painel.</p>
+            <input type="password" id="admin-password" placeholder="Senha Mestra">
+            <button id="admin-login-btn">Entrar no Painel</button>
+            <p id="login-error" style="color: #ef4444; margin-top: 1rem; font-weight: 600;" class="hidden">Senha incorreta!</p>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/>
+                    </svg>
+                    <span>Painel Admin</span>
+                </div>
+                <nav>
+                    <a href="index.html">Início</a>
+                    <a href="jogo-cigano-online.html">Voltar ao Jogo</a>
+                    <a href="#" id="admin-logout" style="color: #ef4444;">Sair</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h2>Gerenciamento de Usuários</h2>
+                <div id="stats">
+                    <span id="total-users">Total: 0</span>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="user-table" id="user-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Senha</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-list">
+                        <!-- Usuários serão inseridos aqui -->
+                    </tbody>
+                </table>
+                <div id="empty-msg" class="empty-state hidden">
+                    Nenhum usuário cadastrado no momento.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // SENHA MESTRA DEFINIDA NO CÓDIGO
+        const MASTER_PASSWORD = "admin_cigano_2026";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginOverlay = document.getElementById('admin-login-overlay');
+            const passwordInput = document.getElementById('admin-password');
+            const loginBtn = document.getElementById('admin-login-btn');
+            const loginError = document.getElementById('login-error');
+            const logoutBtn = document.getElementById('admin-logout');
+
+            // Verificar se já está autenticado nesta sessão
+            if (sessionStorage.getItem('admin_authenticated') === 'true') {
+                loginOverlay.classList.add('hidden');
+                renderUsers();
+            }
+
+            loginBtn.addEventListener('click', () => {
+                if (passwordInput.value === MASTER_PASSWORD) {
+                    sessionStorage.setItem('admin_authenticated', 'true');
+                    loginOverlay.classList.add('hidden');
+                    renderUsers();
+                } else {
+                    loginError.classList.remove('hidden');
+                    passwordInput.value = '';
+                }
+            });
+
+            passwordInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') loginBtn.click();
+            });
+
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                sessionStorage.removeItem('admin_authenticated');
+                location.reload();
+            });
+
+            const API_URL = "http://localhost:5000";
+
+            async function renderUsers() {
+                try {
+                    const response = await fetch(`${API_URL}/admin/usuarios`);
+                    const users = await response.json();
+                    
+                    const list = document.getElementById('user-list');
+                    const emptyMsg = document.getElementById('empty-msg');
+                    const totalSpan = document.getElementById('total-users');
+
+                    list.innerHTML = '';
+                    totalSpan.textContent = `Total: ${users.length}`;
+
+                    if (users.length === 0) {
+                        emptyMsg.classList.remove('hidden');
+                        return;
+                    }
+
+                    emptyMsg.classList.add('hidden');
+
+                    users.forEach(user => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${user.nome}</td>
+                            <td>${user.email}</td>
+                            <td><code>${user.senha}</code></td>
+                            <td>
+                                <span class="status-badge ${user.bloqueado ? 'status-blocked' : 'status-active'}">
+                                    ${user.bloqueado ? 'Bloqueado' : 'Ativo'}
+                                </span>
+                            </td>
+                            <td>
+                                <button class="action-btn ${user.bloqueado ? 'btn-unblock' : 'btn-block'}" 
+                                        onclick="toggleBlock('${user.email}', ${user.bloqueado})">
+                                    ${user.bloqueado ? 'Desbloquear' : 'Bloquear'}
+                                </button>
+                            </td>
+                        `;
+                        list.appendChild(row);
+                    });
+                } catch (error) {
+                    alert("Erro ao carregar usuários da API Python.");
+                }
+            }
+
+            window.toggleBlock = async function(email, isCurrentlyBlocked) {
+                try {
+                    await fetch(`${API_URL}/admin/bloquear`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, bloquear: !isCurrentlyBlocked })
+                    });
+                    renderUsers();
+                } catch (error) {
+                    alert("Erro ao alterar status do usuário.");
+                }
+            };
+        });
+    </script>
+</body>
+</html>

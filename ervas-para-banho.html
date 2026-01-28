@@ -3,39 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Energia do Cigano</title>
-    <meta name="title" content="Blog | Energia do Cigano">
-    <meta name="description" content="Leia artigos sobre Baralho Cigano, espiritualidade e orientação espiritual.">
+    <title>Ervas para Banho - Energia do Cigano</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="images/png" href="images/favicon.png"/>
-    <link rel="canonical" href="https://www.energiadocigano.com.br/blog.html"/>
-        <meta name="twitter:site" content="@energiadocigano">
-    <meta name="robots" content="index">
-    <meta name="google-site-verification" content="CnEn0m5EEv-jjE4JL1lWp2MkfiDfdeLCyMBI9SnMKOI" />
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ED1FB6CLHY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ED1FB6CLHY');
-</script>
+    <style>
+        .filter-section {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1rem;
+        }
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-200);
+            font-family: var(--font-body);
+            background-color: white;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .product-image img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-category {
+            font-size: 0.75rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .product-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-900);
+        }
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+        .btn-view {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: auto;
+        }
+        .btn-view:hover {
+            background-color: white;
+            color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--primary);
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-
-       <header>
+    <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
                     <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
                         <polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/>
                     </svg>
-                    <span><a href="index.html">Energia do Cigano</a></span>
+                    <span>Energia do Cigano</span>
                 </div>
                 <nav>
                     <a href="index.html">Início</a>
                     <a href="produtos-energia-do-cigano.html">Produtos</a>
+                    <a href="novidades.html">Novidades</a>
+                    <a href="banhos-de-limpeza.html">Banhos</a>
+                    <a href="ervas-para-banho.html" class="active">Ervas</a>
                     <a href="blog.html">Blog</a>
                 </nav>
                 <button class="menu-toggle" aria-label="Abrir Menu">
@@ -47,120 +117,95 @@
             <div class="mobile-nav">
                 <a href="index.html">Início</a>
                 <a href="produtos-energia-do-cigano.html">Produtos</a>
+                <a href="novidades.html">Novidades</a>
+                <a href="banhos-de-limpeza.html">Banhos</a>
+                <a href="ervas-para-banho.html">Ervas</a>
                 <a href="blog.html">Blog</a>
             </div>
         </div>
     </header>
-    <!-- Blog Hero Section -->
-    <section class="blog-hero">
-        <div class="container">
-            <h1>Blog Energia do Cigano</h1>
-            <p>Insights, orientações e conhecimentos sobre o Baralho Cigano para impulsionar seu autoconhecimento</p>
+
+    <main class="container">
+        <section class="section-header" style="text-align: center; margin: 3rem 0;">
+            <h1>Ervas para Banho</h1>
+            <div class="divider"></div>
+            <p>Ervas selecionadas para seus rituais de limpeza e energização.</p>
+        </section>
+
+        <div class="filter-section">
+            <label for="relevance-filter">Ordenar por:</label>
+            <select id="relevance-filter" class="filter-select">
+                <option value="relevance">Relevância</option>
+                <option value="price-asc">Menor Preço</option>
+                <option value="price-desc">Maior Preço</option>
+                <option value="newest">Mais Novos</option>
+            </select>
         </div>
-    </section>
-    <!-- Blog Posts Grid -->
-    <section class="blog-grid-section" style="padding: 5rem 0;">
-        <div class="container">
-            <div class="blog-grid">
-                <!-- Post 1 -->
-                <article class="blog-card" data-blog-link="guia-baralho-cigano" style="cursor: pointer;">
-                    <div class="badge">Espiritualidade</div>
-                    <a href="misterios-baralho-cigano.html"><h3>Os Mistérios do Baralho Cigano: Guia Completo para Iniciantes</h3></a>
-                    <a href="misterios-baralho-cigano.html"><p>Descubra os segredos do Baralho Cigano e aprenda a interpretar cada carta. Um guia completo para quem está começando sua jornada espiritual.</p></a>
-                    <div class="blog-card-footer">
-                        <div>
-                            <div class="author">Energia do Cigano</div>
-                            <div>15 de Janeiro de 2026</div>
-                        </div>
-                        <div class="read-more"><a href="misterios-baralho-cigano.html">Ler artigo →</a></div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-badges">
+                        <span class="badge badge-new">Novo</span>
                     </div>
-                </article>
-                <!-- Post 2 -->
-                <article class="blog-card" data-blog-link="amor-baralho-cigano" style="cursor: pointer;">
-                    <div class="badge">Amor</div>
-                    <a href="amor-e-relacionamentos.html"><h3>Amor e Relacionamentos: O Que o Baralho Cigano Revela</h3></a>
-                    <a href="amor-e-relacionamentos.html"><p>Explore como o Baralho Cigano pode ajudar a esclarecer questões de amor e relacionamentos. Interpretações profundas para seu coração.</p></a>
-                    <div class="blog-card-footer">
-                        <div>
-                            <div class="author">Energia do Cigano</div>
-                            <div>12 de Janeiro de 2026</div>
-                        </div>
-                        <div class="read-more"><a href="amor-e-relacionamentos.html">Ler artigo →</a></div>
+                    <img src="images/spiritual-energy.jpg" alt="Alecrim Sagrado">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Ervas</span>
+                    <h3 class="product-title">Alecrim Sagrado - Limpeza e Alegria</h3>
+                    <div class="product-price">R$ 25,00</div>
+                    <a href="produtos/alecrim-sagrado.html" class="btn-view">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-badges">
+                        <span class="badge badge-new">Novo</span>
                     </div>
-                </article>
-                <!-- Post 3 -->
-                <article class="blog-card" data-blog-link="prosperidade-baralho-cigano" style="cursor: pointer;">
-                    <div class="badge">Prosperidade</div>
-                    <a href="prosperidade-e-abundancia.html"><h3>Prosperidade e Abundância: Lições do Baralho Cigano</h3></a>
-                    <a href="prosperidade-e-abundancia.html"><p>Descubra como o Baralho Cigano pode orientar você em questões de trabalho, negócios e prosperidade financeira.</p></a>
-                    <div class="blog-card-footer">
-                        <div>
-                            <div class="author">Energia do Cigano</div>
-                            <div>10 de Janeiro de 2026</div>
-                        </div>
-                        <div class="read-more"><a href="prosperidade-e-abundancia.html">Ler artigo →</a></div>
+                    <img src="images/spiritual-energy.jpg" alt="Arruda Proteção">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Ervas</span>
+                    <h3 class="product-title">Arruda - Proteção Espiritual</h3>
+                    <div class="product-price">R$ 250,00</div>
+                    <a href="produtos/arruda-protecao.html" class="btn-view">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-badges">
                     </div>
-                </article>
-                <!-- Post 4 -->
-                <article class="blog-card" data-blog-link="saude-bem-estar" style="cursor: pointer;">
-                    <div class="badge">Bem-Estar</div>
-                    <a href="saude-e-bem-estar.html"><h3>Saúde e Bem-Estar: O Que as Cartas Revelam</h3></a>
-                    <a href="saude-e-bem-estar.html"><p>Entenda como o Baralho Cigano pode oferecer insights sobre sua saúde física, mental e espiritual.</p></a>
-                    <div class="blog-card-footer">
-                        <div>
-                            <div class="author">Energia do Cigano</div>
-                            <div>08 de Janeiro de 2026</div>
-                        </div>
-                        <div class="read-more"><a href="saude-e-bem-estar.html">Ler artigo →</a></div>
-                    </div>
-                </article>
-                <!-- Post 5 -->
-                <article class="blog-card" data-blog-link="transformacao-pessoal" style="cursor: pointer;">
-                   <div class="badge">Desenvolvimento</div>
-                    <a href="transformacao-pessoal.html"><h3>Transformação Pessoal: Jornada de Autoconhecimento</h3></a>
-                    <a href="transformacao-pessoal.html"><p>Como usar o Baralho Cigano como ferramenta de autoconhecimento e transformação pessoal em sua vida.</p></a>
-                    <div class="blog-card-footer">
-                        <div>
-                            <div class="author">Energia do Cigano</div>
-                            <div>05 de Janeiro de 2026</div>
-                        </div>
-                        <div class="read-more"><a href="transformacao-pessoal.html">Ler artigo →</a></div>
-                    </div>
-                </article>
-                <!-- Post 6 -->
-                <article class="blog-card" data-blog-link="sincronicidades-destino" style="cursor: pointer;">
-                    <div class="badge">Espiritualidade</div>
-                    <a href="sincronicidades-e-destino.html"><h3>Sincronicidades e Destino: Compreendendo os Sinais do Universo</h3></a>
-                    <a href="sincronicidades-e-destino.html"><p>Aprenda a reconhecer e interpretar as sincronicidades que o universo envia através do Baralho Cigano.</p></a>
-                    <div class="blog-card-footer">
-                        <div>
-                            <div class="author">Energia do Cigano</div>
-                            <div>02 de Janeiro de 2026</div>
-                        </div>
-                        <div class="read-more"><a href="sincronicidades-e-destino.html">Ler artigo →</a></div>
-                    </div>
-                </article>
+                    <img src="images/spiritual-energy.jpg" alt="Guiné Força">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Ervas</span>
+                    <h3 class="product-title">Guiné - Força e Descarrego</h3>
+                    <div class="product-price">R$ 25,00</div>
+                    <a href="produtos/guine-forca.html" class="btn-view">Ver Detalhes</a>
+                </div>
             </div>
         </div>
-    </section>
-    <!-- CTA Section -->
+    </main>
+
+           <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2>Pronto para Transformar Sua Vida?</h2>
-            <p>Marque uma consulta com o Baralho Cigano e receba orientação espiritual personalizada</p>
+            <h2>Fique por dentro das novidades</h2>
+            <p>Acesse nossa lista de transmissão de whatsapp</p>
             <a href="#" class="btn-cta" data-whatsapp>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                 </svg>
-                Marcar Consulta Agora
+                Iniciar cadastro
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                 </svg>
             </a>
         </div>
     </section>
-        <!-- Footer -->
-            <footer>
+    
+    <!-- Footer -->
+    <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
@@ -207,6 +252,15 @@
                     </ul>
                 </div>
             </div>
+            <div class="payment-methods" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                <h4 style="color: white; margin-bottom: 1rem; font-size: 1rem;">Formas de Pagamento</h4>
+                <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+                    <span style="color: #ffffff; background: #D4A574; padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">PIX</span>
+                    <span style="color: #ffffff; background: #D4A574; padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">CARTÃO DE CRÉDITO</span>
+                    <span style="color: #ffffff; background: #D4A574; padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">BOLETO</span>
+                </div>
+            </div>
+
             <div class="footer-divider"></div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Energia do Cigano. Todos os direitos reservados.</p>
@@ -214,6 +268,7 @@
             </div>
         </div>
     </footer>
+    
     <!-- Back to Top Button -->
     <button class="back-to-top" title="Voltar ao topo">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -229,5 +284,6 @@
     </a>
 
     <script src="js/main.js" defer></script>
+    <script src="js/shipping-manager.js" defer></script>
 </body>
 </html>

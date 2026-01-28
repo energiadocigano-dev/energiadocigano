@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos Cigano</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="images/png" href="images/favicon.png"/>
+    <style>
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            position: relative;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-category {
+            font-size: 0.75rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .product-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-900);
+        }
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+        .btn-view {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: auto;
+        }
+        .btn-view:hover {
+            background-color: white;
+            color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--primary);
+        }
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            z-index: 1;
+        }
+        .section-title {
+            margin: 3rem 0 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .section-header {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+            padding: 0 1rem;
+        }
+        @media (max-width: 768px) {
+            .section-header {
+                margin-top: 3rem;
+                margin-bottom: 2rem;
+            }
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/>
+                    </svg>
+                    <span>Energia do Cigano</span>
+                </div>
+                <nav>
+                    <a href="index.html">Início</a>
+                    <a href="produtos-energia-do-cigano.html" class="active">Produtos</a>
+                    <a href="novidades.html">Novidades</a>
+                    <a href="banhos-de-limpeza.html">Banhos</a>
+                    <a href="ervas-para-banho.html">Ervas</a>
+                    <a href="blog.html">Blog</a>
+                </nav>
+                <button class="menu-toggle" aria-label="Abrir Menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mobile-nav">
+                <a href="index.html">Início</a>
+                <a href="produtos-energia-do-cigano.html">Produtos</a>
+                <a href="novidades.html">Novidades</a>
+                <a href="banhos-de-limpeza.html">Banhos</a>
+                <a href="ervas-para-banho.html">Ervas</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="margin-top: 2rem;">
+        <!-- Banners Responsivos -->
+        <div class="banner-wrapper">
+            <div class="banner-container active" data-banner="1">
+                <a href="index.html"><img src="images/banner-desktop.jpg" alt="Banner Desktop" class="banner-desktop"></a>
+                <a href="index.html"><img src="images/banner-mobile.jpg" alt="Banner Mobile" class="banner-mobile"></a>
+            </div>
+        </div>
+
+        <section class="section-header">
+            <h2>Nossos Produtos</h2>
+            <div class="divider"></div>
+            <p>Explore nossa seleção completa de itens para sua jornada espiritual</p>
+        </section>
+
+        <!-- Banner Vitrine Mini -->
+        <div class="banner-vitrine-mini">
+            <div class="banner-extra-item">
+                <a href="ervas-para-banho.html">
+                    <img src="images/spiritual-energy.jpg" alt="Ervas Sagradas">
+                    <div class="banner-extra-content">
+                    </div>
+                </a>
+            </div>
+            <div class="banner-extra-item">
+                <a href="banhos-de-limpeza.html">
+                    <img src="images/spiritual-energy.jpg" alt="Banhos de Limpeza">
+                    <div class="banner-extra-content">
+                    </div>
+                </a>
+            </div>
+            <div class="banner-extra-item">
+                <a href="novidades.html">
+                    <img src="images/spiritual-energy.jpg" alt="Novidades">
+                    <div class="banner-extra-content">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Menu de Categorias e Filtro -->
+        <div class="products-nav-bar" style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0; border-bottom: 1px solid var(--gray-200); padding-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+            <div class="category-links" style="display: flex; gap: 1.5rem;">
+                <a href="produtos-energia-do-cigano.html" style="font-weight: 700; color: var(--primary);">Tudo</a>
+                <a href="novidades.html">Novidades</a>
+                <a href="banhos-de-limpeza.html">Banhos</a>
+                <a href="ervas-para-banho.html">Ervas</a>
+            </div>
+            <div class="relevance-filter-container">
+                <label for="relevance-filter">Ordenar por:</label>
+                <select id="relevance-filter" class="filter-select" style="padding: 0.5rem; border-radius: var(--radius); border: 1px solid var(--gray-200);">
+                    <option value="relevance">Relevância</option>
+                    <option value="price-asc">Menor Preço</option>
+                    <option value="price-desc">Maior Preço</option>
+                    <option value="newest">Mais Novos</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Novidades -->
+        <a href="novidades.html"><h3 class="section-title">Novidades →</h3></a>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="new-badge">NOVO</span>
+                    <img src="images/spiritual-energy.jpg" alt="Oráculo dos Ciclos">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Oráculos</span>
+                    <h3 class="product-title">Oráculo dos Ciclos - 40 Cartas</h3>
+                    <div class="product-price">R$ 198,00</div>
+                    <a href="#" class="btn-view">Ver Detalhes</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banhos -->
+        <a href="banhos-de-limpeza.html"><h3 class="section-title">Banhos →</h3></a>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="new-badge">MAIS VENDIDO</span>
+                    <img src="images/spiritual-energy.jpg" alt="Combo Banhos">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Banho de Erva</span>
+                    <h3 class="product-title">Combo Todos Banhos de Ervas de Refil</h3>
+                    <div class="product-price">R$ 120,00</div>
+                    <a href="produtos/combo-banhos-refil.html" class="btn-view">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="new-badge">NOVO</span>
+                    <img src="images/spiritual-energy.jpg" alt="Banho Sal Grosso">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Banho de Sal</span>
+                    <h3 class="product-title">Combo Todos Banhos de Ervas de Refil 2</h3>
+                    <div class="product-price">R$ 129,90</div>
+                    <a href="produtos/combo-banhos-refil-2.html" class="btn-view">Ver Detalhes</a>
+                </div>
+            </div>
+           <div class="product-card">
+                <div class="product-image">
+                    <span class="new-badge">NOVO</span>
+                    <img src="images/spiritual-energy.jpg" alt="Banho Sal Grosso">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Banho de Sal</span>
+                    <h3 class="product-title">Banho de Sal Grosso e 7 Ervas</h3>
+                    <div class="product-price">R$ 35,00</div>
+                    <a href="produtos/banho-sal-grosso.html" class="btn-view">Ver Detalhes</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ervas -->
+        <a href="ervas-para-banho.html"><h3 class="section-title">Ervas →</h3></a>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/spiritual-energy.jpg" alt="Alecrim Sagrado">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Ervas</span>
+                    <h3 class="product-title">Alecrim Sagrado - Limpeza e Alegria</h3>
+                    <div class="product-price">R$ 25,00</div>
+                    <a href="produtos/alecrim-sagrado.html" class="btn-view">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/spiritual-energy.jpg" alt="Arruda Proteção">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Ervas</span>
+                    <h3 class="product-title">Arruda - Proteção Espiritual</h3>
+                    <div class="product-price">R$ 25,00</div>
+                    <a href="produtos/arruda-protecao.html" class="btn-view">Ver Detalhes</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/spiritual-energy.jpg" alt="Guiné Força">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Ervas</span>
+                    <h3 class="product-title">Guiné - Força e Descarrego</h3>
+                    <div class="product-price">R$ 25,00</div>
+                    <a href="produtos/guine-forca.html" class="btn-view">Ver Detalhes</a>
+                </div>
+            </div>
+        </div>
+    </main>
+       <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Fique por dentro das novidades</h2>
+            <p>Acesse nossa lista de transmissão de whatsapp</p>
+            <a href="#" class="btn-cta" data-whatsapp>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                Iniciar cadastro
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color: #D4A574;">
+                            <polygon points="12 2 15.09 10.26 23.77 10.36 17.13 16.01 19.09 24.29 12 18.54 4.91 24.29 6.87 16.01 0.23 10.36 8.91 10.26 12 2"/>
+                        </svg>
+                        <h3 style="color: white; font-size: 1.125rem;">Energia do Cigano</h3>
+                    </div>
+                    <p>Consultas espirituais através do Baralho Cigano com privacidade garantida.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="produtos-energia-do-cigano.html">Produtos</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="https://www.instagram.com/energiadocigano" target="_blank" aria-label="Instagram" style="color: #D1D5DB; transition: color 0.2s ease;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@energia.do.cigano" target="_blank" aria-label="TikTok" style="color: #D1D5DB; transition: color 0.2s ease;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="politica-de-privacidade.html">Privacidade</a></li>
+                        <li><a href="termos-de-uso.html">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#" data-whatsapp>WhatsApp</a></li>
+                        <li><a>energiadocigano@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="payment-methods" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                <h4 style="color: white; margin-bottom: 1rem; font-size: 1rem;">Formas de Pagamento</h4>
+                <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+                    <span style="color: #ffffff; background: #D4A574; padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">PIX</span>
+                    <span style="color: #ffffff; background: #D4A574; padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">CARTÃO DE CRÉDITO</span>
+                    <span style="color: #ffffff; background: #D4A574; padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">BOLETO</span>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Energia do Cigano. Todos os direitos reservados.</p>
+                <p>Consultas espirituais através do Baralho Cigano | Privacidade garantida</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Voltar ao topo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="#" class="whatsapp-float" data-whatsapp title="Fale conosco no WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <script src="js/main.js" defer></script>
+    <script src="js/shipping-manager.js" defer></script>
+</body>
+</html>
