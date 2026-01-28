@@ -72,10 +72,6 @@
                     <a href="produtos-energia-do-cigano.html">Produtos</a>
                     <a href="jogo-cigano-online.html" class="active">Jogo Online</a>
                     <a href="blog.html">Blog</a>
-                    <div id="user-info" class="hidden">
-                        <span id="user-name-display"></span>
-                        <a id="logout-btn">Sair</a>
-                    </div>
                 </nav>
                 <button class="menu-toggle" aria-label="Abrir Menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -150,7 +146,7 @@
     </main>
 
     <!-- Footer -->
-            <footer>
+    <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
@@ -187,10 +183,9 @@
                     <ul>
                         <li><a href="politica-de-privacidade.html">Privacidade</a></li>
                         <li><a href="termos-de-uso.html">Termos de Uso</a></li>
-                        <li><a href="admin.html" style="opacity: 0.5;">Administração</a></li>
                     </ul>
                 </div>
-                                <div class="footer-section">
+                <div class="footer-section">
                     <h4>Contato</h4>
                     <ul>
                         <li><a href="#" data-whatsapp>WhatsApp</a></li>
@@ -205,69 +200,13 @@
             </div>
         </div>
     </footer>
+
     <!-- Back to Top Button -->
     <button class="back-to-top" title="Voltar ao topo">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
-
-    <!-- Auth Modal -->
-    <div id="auth-overlay" class="auth-overlay hidden">
-        <div class="auth-modal">
-            <div id="login-container">
-                <h2>Acesse seu Jogo</h2>
-                <p>Faça login para realizar sua tiragem gratuita.</p>
-                <form id="login-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="login-email">E-mail</label>
-                        <input type="email" id="login-email" required placeholder="seu@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="login-pass">Senha</label>
-                        <input type="password" id="login-pass" required placeholder="********">
-                    </div>
-                    <button type="submit" class="auth-btn">Entrar</button>
-                </form>
-                <p class="auth-switch">Não tem uma conta? <a href="#" id="show-register">Cadastre-se</a></p>
-                <p class="auth-switch"><a href="#" id="show-forgot">Esqueci minha senha</a></p>
-            </div>
-
-            <div id="forgot-container" class="hidden">
-                <h2>Recuperar Senha</h2>
-                <p>Insira seu e-mail para recuperar seu acesso.</p>
-                <form id="forgot-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="forgot-email">E-mail</label>
-                        <input type="email" id="forgot-email" required placeholder="seu@email.com">
-                    </div>
-                    <button type="submit" class="auth-btn">Recuperar</button>
-                </form>
-                <p class="auth-switch"><a href="#" id="back-to-login">Voltar para o Login</a></p>
-            </div>
-
-            <div id="register-container" class="hidden">
-                <h2>Crie sua Conta</h2>
-                <p>Cadastre-se para salvar suas consultas e novidades.</p>
-                <form id="register-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="reg-name">Nome Completo</label>
-                        <input type="text" id="reg-name" required placeholder="Seu Nome">
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-email">E-mail</label>
-                        <input type="email" id="reg-email" required placeholder="seu@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-pass">Senha</label>
-                        <input type="password" id="reg-pass" required placeholder="Crie uma senha">
-                    </div>
-                    <button type="submit" class="auth-btn">Cadastrar</button>
-                </form>
-                <p class="auth-switch">Já tem conta? <a href="#" id="show-login">Fazer Login</a></p>
-            </div>
-        </div>
-    </div>
 
     <!-- WhatsApp Floating Button -->
     <a href="#" class="whatsapp-float" data-whatsapp title="Fale conosco no WhatsApp">
@@ -278,9 +217,6 @@
 
     <script src="js/main.js" defer></script>
     <script src="js/shipping-manager.js" defer></script>
-</body>
-</html>
-
     <script src="js/cartas-cigano.js"></script>
     <script>
         let baralhoEmbaralhado = [];
